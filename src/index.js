@@ -38,3 +38,56 @@ btnLight.addEventListener("click", () => {
 if (localStorage.getItem("theme") === "dark") {
   html.classList.add("dark");
 }
+
+
+
+// Add Tasks
+
+const AddTasks = document.querySelector("#add-tsk")
+const OpenTaskMenu = document.querySelector("#open-tsk-menu")
+const NoTask = document.querySelector("#No-Tsk")
+const CloseTasksMenu = document.querySelector("#cls-addtsk")
+console.log(AddTasks)
+
+OpenTaskMenu.addEventListener("click" , () => {
+  AddTasks.classList.remove('hidden')
+  requestAnimationFrame(() => {
+    AddTasks.classList.remove('opacity-0','-translate-y-4','pointer-events-none')
+    AddTasks.classList.add('opacity-100','translate-y-0','flex')
+  })
+  NoTask.classList.add('hidden')
+  OpenTaskMenu.classList.add('hidden')
+  
+})
+
+
+CloseTasksMenu.addEventListener("click" , () => {
+  AddTasks.classList.add('opacity-0','-translate-y-4','pointer-events-none','hidden')
+  AddTasks.classList.remove('opacity-100','translate-y-0','flex')
+  NoTask.classList.remove('hidden')
+  OpenTaskMenu.classList.remove('hidden')
+
+
+})
+
+
+// Add Tags
+
+const CloseTags = document.querySelector("#Close-tags")
+const AddTags = document.querySelector("#Tags")
+const CloseTagsBtn = document.querySelector("#close-tg-btn")
+
+AddTags.addEventListener("click" , () => {
+  CloseTags.classList.remove('hidden')
+  requestAnimationFrame(() => {
+    CloseTags.classList.remove('opacity-0','-translate-y-4','pointer-events-none')
+
+  })
+  AddTags.classList.add('hidden')
+})
+
+CloseTagsBtn.addEventListener("click" , () => {
+  CloseTags.classList.add('opacity-0','-translate-y-4','pointer-events-none','hidden')
+  AddTags.classList.remove('hidden')
+  DisplayTg.classList.add('hidden')
+})
