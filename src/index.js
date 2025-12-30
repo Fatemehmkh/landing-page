@@ -6,14 +6,14 @@ const overlay = document.querySelector("#overlay");
 console.log(menuBtn);
 
 menuBtn.addEventListener("click", () => {
-  menuBar.classList.remove("-right-64");
+  menuBar.classList.remove("-right-72");
   menuBar.classList.add("right-0");
   overlay.classList.remove("opacity-0", "pointer-events-none");
 });
 
 closeBtn.addEventListener("click", () => {
   menuBar.classList.remove("right-0");
-  menuBar.classList.add("-right-64");
+  menuBar.classList.add("-right-72");
   overlay.classList.add("opacity-0", "pointer-events-none");
 });
 
@@ -22,6 +22,7 @@ closeBtn.addEventListener("click", () => {
 const btnLight = document.getElementById("btn-light");
 const btnDark = document.getElementById("btn-dark");
 const html = document.documentElement;
+
 
 btnDark.addEventListener("click", () => {
   btnLight.classList.remove("bg-white");
@@ -39,6 +40,34 @@ if (localStorage.getItem("theme") === "dark") {
   html.classList.add("dark");
 }
 
+// Shamsi Date
+const today = new Date();
+
+const weekday = today.toLocaleDateString("fa-IR-u-ca-persian", {
+  weekday: "long",
+});
+
+const date = today.toLocaleDateString("fa-IR-u-ca-persian", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+
+document.getElementById("todayDate").innerText = `امروز، ${weekday}، ${date}`;
+document.getElementById("todayDate-1").innerText = `امروز، ${weekday}، ${date}`;
+
+
+// Active State
+const menuItems = document.querySelectorAll("#menuBar .flex.items-center");
+
+menuItems.forEach((item) => {
+  item.addEventListener("click", () => {
+    menuItems.forEach((i) =>
+      i.classList.remove("bg-[#F5FAFF]", "text-[#007BFF]")
+    );
+    item.classList.add("bg-[#F5FAFF]", "text-[#007BFF]");
+  });
+});
 
 
 // Add Tasks
@@ -119,7 +148,7 @@ CloseTags.classList.add('hidden')
 AddRed.classList.remove('hidden')
 AddRed.classList.add('flex')
 SelectedTag = {text: "بالا" , class : "bg-red-300 text-red-500"}
-BorderTag = {class :"before:absolute before:right-0 before:top-50% before:h-[80%] before:w-[4px] before:bg-red-500 before:rounded-l-2xl"}
+BorderTag = {class :"before:absolute before:right-0 before:top-[10%] before:h-[80%] before:w-[4px] before:bg-red-500 before:rounded-l-2xl"}
 checkinputs()
 })
 YellowTag.addEventListener("click" , () => {
@@ -127,7 +156,7 @@ CloseTags.classList.add('hidden')
 AddYellow.classList.remove('hidden')
 AddYellow.classList.add('flex')
 SelectedTag = {text: "متوسط" , class : "bg-yellow-200 text-yellow-500"}
-BorderTag = {class :"before:absolute before:right-0 before:top-50% before:h-[80%] before:w-[4px] before:bg-yellow-500 before:rounded-l-2xl"}
+BorderTag = {class :"before:absolute before:right-0 before:top-[10%] before:h-[80%] before:w-[4px] before:bg-yellow-500 before:rounded-l-2xl"}
 checkinputs()
 })
 GreenTag.addEventListener("click" , () => {
@@ -135,7 +164,7 @@ CloseTags.classList.add('hidden')
 AddGreen.classList.remove('hidden')
 AddGreen.classList.add('flex')
 SelectedTag = {text: "پایین" , class : "bg-green-200 text-green-500"}
-BorderTag = {class :"before:absolute before:right-0 before:top-50% before:h-[80%] before:w-[4px] before:bg-green-600 before:rounded-l-2xl"}
+BorderTag = {class :"before:absolute before:right-0 before:top-[10%] before:h-[80%] before:w-[4px] before:bg-green-500 before:rounded-l-2xl"}
 checkinputs()
 })
 
@@ -172,17 +201,17 @@ document.addEventListener("DOMContentLoaded" , () => {
   function renderlist(list) {
     TaskList.innerHTML = list.map((task) =>
       `<li class="relative bg-white border border-gray-300 rounded-lg shadow-sm">
-        <div class = "${task.bodertags.class} rounded-lg">
+        <div class = "${task.bodertags.class}">
+        </div>
         <button class = "absolute top-3 left-5"><img class = "cursor-pointer" src="../assets/icons/Frame 33317.svg" alt="icon"></button>
         <div class="lg:flex lg:flex-row">
-        <div class="flex justify-start items-center gap-5 m-3!">
-        <input class="size-5" type="checkbox" name="check">
-        <strong class="text-xl">${task.title}</strong>
-        </div>
-        <span class="inline-block mr-10! mb-3! mt-1! px-3 py-1 lg:mr-5! lg:mt-4! max-w-full rounded-lg text-sm ${task.tag.class}"> ${task.tag.text} </span>
-        </div>
-        <p class="text-gray-500 m-3! max-w-full text-ellipsis">${task.paragraph}</p>
-        </div>
+          <div class="flex justify-start items-center gap-5 m-3!">
+             <input class="size-5" type="checkbox" name="check">
+             <strong class="text-xl">${task.title}</strong>
+          </div>
+          <span class="inline-block mr-10! mb-3! mt-1! px-3 py-1 lg:mr-5! lg:mt-4! max-w-full rounded-lg text-sm ${task.tag.class}"> ${task.tag.text} </span>
+          </div>
+          <p class="text-gray-500 m-3! max-w-full text-ellipsis">${task.paragraph}</p>
         </li>`
   ).join("")
   }
