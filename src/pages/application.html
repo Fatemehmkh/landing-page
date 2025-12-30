@@ -3,6 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script>
+      tailwind.config = {
+        darkMode: "class",
+      };
+    </script> -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>کوئرالیست</title>
     <link rel="stylesheet" href="./../app.css" />
@@ -21,86 +26,122 @@
       </div>
     </header>
     <!--Header-->
+    <!--Greeting-->
+    <div class="lg:hidden h-24 w-full flex px-4">
+      <!--profile-->
+      <div class="w-fit flex items-center justify-center">
+        <img src="./../assets/images/user5.png" alt="profile" />
+      </div>
+      <!--ShamsiDatePicker-->
+      <div class="w-2/3 flex flex-col justify-center pr-2 gap-3">
+        <h3 class="text-[#242424] font-extrabold text-lg">سلام رویا</h3>
+        <p id="todayDate" class="text-[#7D7D7F] font-semibold"></p>
+      </div>
+    </div>
+
     <!--Overlay-->
     <div
       id="overlay"
-      class="lg:hidden fixed inset-0 dark:bg-[#060C18] bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out z-10"
+      class="lg:hidden fixed inset-0 bg-black/50 dark:bg-[#060C18] opacity-0 pointer-events-none transition-opacity duration-300 z-10"
     ></div>
-    <!--Overlay-->
     <!--SideBar-->
     <aside
       id="menuBar"
-      class="lg:hidden pb-10! z-50 w-64 absolute top-0 -right-64 bg-white transition-all duration-300 dark:bg-[#091120] text-gray-800 dark:text-gray-100"
+      class="fixed top-0 -right-72 z-50 w-72 h-dvh bg-white text-gray-800 transition-all duration-300 lg:right-0 lg:rounded-2xl lg:shadow-lg lg:mr-4! lg:h-auto lg:py-3 lg:my-3! dark:bg-[#091120] dark:text-gray-100"
     >
       <!--head of sidebar-->
-      <div class="py-7 px-4 flex items-center justify-between">
+      <div class="py-7 px-4 flex items-center justify-between lg:hidden">
         <h2 class="font-bold text-[#242424]">کوئرا لیست</h2>
         <button id="closeBtn">
           <img src="./../assets/icons/exit.svg" />
         </button>
       </div>
+      <!--Greeting-->
+      <div class="hidden h-24 w-full lg:flex px-4 mb-5!">
+        <!--profile-->
+        <div class="w-fit flex items-center justify-center">
+          <img src="./../assets/images/user5.png" alt="profile" />
+        </div>
+        <!--ShamsiDatePicker-->
+        <div class="w-2/3 lg:flex flex-col justify-center pr-2 gap-3">
+          <h3 class="text-[#242424] font-extrabold text-lg">سلام رویا</h3>
+          <p
+            id="todayDate-1"
+            class="text-[#7D7D7F] font-semibold text-sm whites"
+          ></p>
+        </div>
+      </div>
       <!--body of sidebar-->
-      <div class="flex flex-col gap-6 px-4 text-text-menu">
+      <div class="flex flex-col gap-6 px-4 text-text-menu overflow-y-auto">
         <div
-          class="bg-[#F5FAFF] text-[#007BFF] pr-5 w-full flex items-center gap-4 h-11 rounded-lg"
+          class="bg-[#F5FAFF] text-[#007BFF] cursor-pointer pr-5 w-full flex items-center gap-4 h-11 rounded-lg"
         >
           <img src="./../assets/icons/home-2.svg" />
           <span class="text-primary font-bold text-base">خانه</span>
         </div>
         <div
-          class="pr-5 w-full flex items-center gap-4 h-11 text-[#525252] rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-300 ;"
+          class="pr-5 w-full flex items-center gap-4 cursor-pointer h-11 text-[#525252] rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-300 ;"
         >
           <img src="./../assets/icons/task-square.svg" />
           <span class="font-semibold">تسک ها</span>
         </div>
         <div
-          class="pr-5 w-full flex items-center text-[#525252] gap-4 h-11 rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-300 ;"
+          class="pr-5 w-full flex items-center cursor-pointer text-[#525252] gap-4 h-11 rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-300 ;"
         >
           <img src="./../assets/icons/calendar.svg" />
           <span class="font-semibold">تقویم</span>
         </div>
         <div
-          class="pr-5 w-full flex items-center text-[#525252] gap-4 h-11 rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-300 ;"
+          class="pr-5 w-full flex items-center cursor-pointer text-[#525252] gap-4 h-11 rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-300 ;"
         >
           <img src="./../assets/icons/arrange-square-2.svg" />
           <span class="font-semibold">گزارشات</span>
         </div>
         <div
-          class="pr-5 w-full flex items-center text-[#525252] gap-4 h-11 rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-300 ;"
+          class="pr-5 w-full flex items-center cursor-pointer text-[#525252] gap-4 h-11 rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-300 ;"
         >
           <img src="./../assets/icons/setting.svg" />
           <span class="font-semibold">تنظیمات</span>
         </div>
         <div
-          class="pr-5 w-full flex items-center text-[#525252] gap-4 h-11 rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-300 ;"
+          class="pr-5 w-full flex items-center cursor-pointer text-[#525252] gap-4 h-11 rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-300 ;"
         >
           <img src="./../assets/icons/24-support.svg" />
           <span class="font-semibold">پشتیبانی</span>
         </div>
         <div
-          class="pr-5 w-full flex items-center text-[#525252] gap-4 h-11 rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-300 ;"
+          class="pr-5 w-full flex items-center cursor-pointer text-[#525252] gap-4 h-11 rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-300 ;"
         >
           <img src="./../assets/icons/profile.svg" />
           <span class="font-semibold">پروفایل</span>
         </div>
       </div>
       <!--toggle button for dark/light-->
-      <div class="mt-52.25! flex justify-center">
+      <div class="flex justify-center !mt-20">
         <div
           class="bg-[#F7F7F7] dark:bg-[#0C1B31] p-1 flex items-center gap-1 rounded-lg"
         >
           <button
             id="btn-light"
-            class="flex justify-center items-center gap-3 bg-white py-1.5 px-4 rounded-lg cursor-pointer"
+            class="flex items-center bg-white dark:bg-transparent justify-center gap-3 py-1.5 px-4 rounded-lg dark:bg-[#0C1B31] dark:text-white cursor-pointer"
           >
-            <img src="./../assets/icons/sun.svg" />
-            <span> روشن</span>
+            <img src="./../assets/icons/sun.svg" class="block dark:hidden" />
+            <img
+              src="./../assets/icons/sun-dark.svg"
+              class="hidden dark:block"
+            />
+            <span>روشن</span>
           </button>
+
           <button
             id="btn-dark"
             class="flex items-center justify-center gap-3 py-1.5 px-4 rounded-lg dark:bg-[#0C1B31] dark:text-white cursor-pointer"
           >
-            <img src="./../assets/icons/moon.svg" />
+            <img src="./../assets/icons/moon.svg" class="block dark:hidden" />
+            <img
+              src="./../assets/icons/moon-dark.svg"
+              class="hidden dark:block"
+            />
             <span>تاریک</span>
           </button>
         </div>
@@ -108,7 +149,7 @@
       <!--line in sidebar-->
       <div class="w-52 border-[#E9E9E9] border mx-auto! mt-6!"></div>
       <!--log out-->
-      <div class="pr-4 flex items-center gap-4 mt-8!">
+      <div class="pr-6 flex items-center gap-4 mt-8!">
         <img src="./../assets/icons/logout.svg" alt="logout" />
         <span>خروج</span>
       </div>
@@ -116,12 +157,13 @@
     <!--SideBar-->
     <main>
       <!-- First section -->
-       <section id="td-tasks" class="flex flex-col mt-9! gap-2 mx-5! lg:mx-65!">
+      <section id="td-tasks" class="flex flex-col mt-9! gap-2 mx-5! lg:mx-65!">
         <h2 class="text-xl font-bold">تسک های امروز</h2>
         <!-- Having task or not -> js -->
         <p class="text-gray-500">تسکی برای امروز نداری!</p>
 
-        <button id="open-tsk-menu"
+        <button
+          id="open-tsk-menu"
           class="flex items-center justify-start text-right pr-3 pt-3 text-blue-500 w-full border border-dashed border-gray-400 p-2 rounded-lg cursor-pointer"
         >
           <span class="text-5xl font-thin pl-3!">+</span>افزودن وظیفه جدید
@@ -144,33 +186,174 @@
           </div>
         </div>
         <!-- add tasks js -->
-        
-        <div id="add-tsk" class="flex-col border border-gray-200 rounded-xl gap-3 transition-all duration-300 ease-out opacity-0 -translate-y-4 pointer-events-none hidden">
-            <input class="pr-5 pt-2 font-bold outline-none" type="text" placeholder="نام تسک" id="Task's-name">
-            <input class="pr-5 pt-2 py-5 text-gray-500 outline-none" type="text" placeholder="توضیحات" id="info">
-            <!-- add tags js -->
+
+        <div
+          id="add-tsk"
+          class="flex-col border border-gray-200 rounded-xl gap-3 transition-all duration-300 ease-out opacity-0 -translate-y-4 pointer-events-none hidden"
+        >
+          <input
+            class="pr-5 pt-2 font-bold outline-none"
+            type="text"
+            placeholder="نام تسک"
+            id="Task's-name"
+          />
+          <input
+            class="pr-5 pt-2 py-5 text-gray-500 outline-none"
+            type="text"
+            placeholder="توضیحات"
+            id="info"
+          />
+          <!-- add tags js -->
+          <div>
+            <button
+              id="Tags"
+              class="flex gap-1 mb-3! mr-5! mt-4! p-1 border border-gray-500 hover:bg-gray-200 transition-colors duration-150 rounded-lg text-gray-400"
+            >
+              <img src="../assets/icons/tag-right.svg" alt="image" />تگ ها
+            </button>
+          </div>
+
+          <div
+            id="Close-tags"
+            class="transition-all duration-300 ease-out opacity-0 -translate-y-4 pointer-events-none hidden"
+          >
             <div>
-                <button id="Tags" class="flex gap-1 mb-3! mr-5! mt-4! p-1 border border-gray-500 hover:bg-gray-200 transition-colors duration-150 rounded-lg text-gray-400"><img src="../assets/icons/tag-right.svg" alt="image">تگ ها</button>
+              <button
+                id="close-tg-btn"
+                class="flex justify-center items-center gap-1 mb-3! mr-5! mt-4! p-1 border border-gray-500 hover:bg-gray-200 transition-colors duration-150 rounded-lg text-gray-400"
+              >
+                <img
+                  class="size-4"
+                  src="../assets/icons/tag-down.png"
+                  alt="icon"
+                />تگ ها
+              </button>
             </div>
-            
-                <div id="Close-tags" class="transition-all duration-300 ease-out opacity-0 -translate-y-4 pointer-events-none hidden">
-                    <div>
-                        <button id="close-tg-btn" class="flex justify-center items-center gap-1 mb-3! mr-5! mt-4! p-1 border border-gray-500 hover:bg-gray-200 transition-colors duration-150 rounded-lg text-gray-400"><img class="size-4" src="../assets/icons/tag-down.png" alt="icon">تگ ها</button>
-                     </div>
-                    
-                    <div class="flex justify-between border ml-40! mr-5! p-3 rounded-lg border-gray-300 text-gray-300 lg:size-[33%]">
-                        <button id="red-tag" class="p-2 cursor-pointer rounded-lg bg-red-300 hover:bg-red-400 text-red-500 transition-colors duration-300">بالا</button>
-                        <div class="border-l"></div>
-                        <button id="ylw-tag" class="p-2 cursor-pointer rounded-lg bg-yellow-200 hover:bg-yellow-300 text-yellow-500 transition-colors duration-300">متوسط</button>
-                        <div class="border-r"></div>
-                        <button id="green-tag" class="p-2 cursor-pointer rounded-lg bg-green-200 hover:bg-green-300 text-green-500 transition-colors duration-300">پایین</button>
-                    </div>
-                </div>
-        
-            <div class="flex justify-end border-t border-gray-200 gap-2 pt-5">
-                <button id="cls-addtsk" class="pl-3 mb-5! rounded-xl"><img class="cursor-pointer bg-gray-200 hover:bg-gray-300 transition-colors duration-250 rounded-lg size-9" src="../assets/icons/exit.svg" alt="icon"></button>
-                <button class="pl-3 mb-5! ml-3! text-white bg-blue-500 hover:bg-blue-600 transition-colors duration-250 p-2 rounded-xl cursor-pointer disabled:bg-blue-300 disabled:cursor-not-allowed">اضافه کردن تسک ها</button>
-             </div>
+
+            <div
+              class="flex justify-between border ml-40! mr-5! p-3 rounded-lg border-gray-300 text-gray-300 lg:size-[33%]"
+            >
+              <button
+                id="red-tag"
+                class="p-2 cursor-pointer rounded-lg bg-red-300 hover:bg-red-400 text-red-500 transition-colors duration-300"
+              >
+                بالا
+              </button>
+              <div class="border-l"></div>
+              <button
+                id="ylw-tag"
+                class="p-2 cursor-pointer rounded-lg bg-yellow-200 hover:bg-yellow-300 text-yellow-500 transition-colors duration-300"
+              >
+                متوسط
+              </button>
+              <div class="border-r"></div>
+              <button
+                id="green-tag"
+                class="p-2 cursor-pointer rounded-lg bg-green-200 hover:bg-green-300 text-green-500 transition-colors duration-300"
+              >
+                پایین
+              </button>
+            </div>
+          </div>
+
+          <div class="flex justify-end border-t border-gray-200 gap-2 pt-5">
+            <button id="cls-addtsk" class="pl-3 mb-5! rounded-xl">
+              <img
+                class="cursor-pointer bg-gray-200 hover:bg-gray-300 transition-colors duration-250 rounded-lg size-9"
+                src="../assets/icons/exit.svg"
+                alt="icon"
+              />
+            </button>
+            <button
+              class="pl-3 mb-5! ml-3! text-white bg-blue-500 hover:bg-blue-600 transition-colors duration-250 p-2 rounded-xl cursor-pointer disabled:bg-blue-300 disabled:cursor-not-allowed"
+            >
+              اضافه کردن تسک ها
+            </button>
+          </div>
+        </div>
+      </section>
+      <section id="EndTask" class="flex flex-col mt-9! mx-5! lg:mx-65!">
+        <h2 class="text-xl font-bold">تسک های انجام شده</h2>
+        <p class="text-[#696969] pt-3 mb-2 box-border">
+          3 تسک را بایدانجام داد
+        </p>
+        <!-- carts -->
+        <div id="Carts" class="grid gap-4 mt-4!">
+          <!-- cart1 -->
+          <div
+            id="Cart1"
+            class="relative w-full min-h-20 p-3 border items-center flex border-[#E9E9E9] bg-white rounded-xl overflow-hidden before:content-[''] before:absolute before:right-0 before:top-50% before:h-[80%] before:w-[4px] before:bg-green-700 before:rounded-l-2xl"
+          >
+            <input
+              class="bg-[#007BFF] text-[#007BFF] cursor-pointer w-5 h-5"
+              type="checkbox"
+              checked
+              name="Done-Task"
+              id="Done-Task"
+            />
+            <div class="pt-3 pb-3 flex-1 flex flex-row">
+              <p class="font-semibold text-sm px-3.5 line-through">
+                خرید میوه و سبزیجات و لبنیات برای خانه
+              </p>
+            </div>
+            <button id="EditTask1" type="button" class="cursor-pointer h-5 w-1">
+              <img
+                class="h-5 w-1"
+                src="../assets/icons/Frame 33317.svg"
+                alt="Edit"
+              />
+            </button>
+          </div>
+          <!-- cart2 -->
+          <div
+            id="Cart2"
+            class="relative w-full min-h-20 p-3 border items-center flex border-[#E9E9E9] bg-white rounded-xl overflow-hidden before:content-[''] before:absolute before:right-0 before:top-50% before:h-[80%] before:w-[4px] before:bg-green-700 before:rounded-l-2xl"
+          >
+            <input
+              class="bg-[#007BFF] text-[#007BFF] cursor-pointer w-5 h-5"
+              type="checkbox"
+              checked
+              name="Done-Task"
+              id="Done-Task"
+            />
+            <div class="pt-3 pb-3 flex-1 flex flex-row">
+              <p class="font-semibold text-sm px-3.5 line-through">
+                خرید میوه و سبزیجات و لبنیات برای خانه
+              </p>
+            </div>
+            <button id="EditTask2" type="button" class="cursor-pointer h-5 w-1">
+              <img
+                class="h-5 w-1"
+                src="../assets/icons/Frame 33317.svg"
+                alt="Edit"
+              />
+            </button>
+          </div>
+          <!-- cart3 -->
+          <div
+            id="Cart3"
+            class="relative w-full min-h-20 p-3 border items-center flex border-[#E9E9E9] bg-white rounded-xl overflow-hidden before:content-[''] before:absolute before:right-0 before:top-50% before:h-[80%] before:w-[4px] before:bg-green-700 before:rounded-l-2xl"
+          >
+            <input
+              class="bg-[#007BFF] text-[#007BFF] cursor-pointer w-5 h-5"
+              type="checkbox"
+              checked
+              name="Done-Task"
+              id="Done-Task"
+            />
+            <div class="pt-3 pb-3 flex-1 flex flex-row">
+              <p class="font-semibold text-sm px-3.5 line-through">
+                خرید میوه و سبزیجات و لبنیات برای خانه
+              </p>
+            </div>
+            <button id="EditTask3" type="button" class="cursor-pointer h-5 w-1">
+              <img
+                class="h-5 w-1"
+                src="../assets/icons/Frame 33317.svg"
+                alt="Edit"
+              />
+            </button>
+          </div>
         </div>
       </section>
     </main>
