@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+<html lang="en" dir="rtl" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -155,20 +155,21 @@
       </div>
     </aside>
     <!--SideBar-->
-    <main>
+    <main class="lg:pr-52">
       <!-- First section -->
-      <section id="td-tasks" class="flex flex-col mt-9! gap-2 mx-5! lg:mx-65!">
+       <section id="td-tasks" class="flex flex-col mt-9! gap-2 mx-5! lg:mx-65!">
         <h2 class="text-xl font-bold">تسک های امروز</h2>
         <!-- Having task or not -> js -->
-        <p class="text-gray-500">تسکی برای امروز نداری!</p>
+        <p id="task-counter" class="text-gray-500">تسکی برای امروز نداری!</p>
 
-        <button
-          id="open-tsk-menu"
+        <button id="open-tsk-menu"
           class="flex items-center justify-start text-right pr-3 pt-3 text-blue-500 w-full border border-dashed border-gray-400 p-2 rounded-lg cursor-pointer"
         >
           <span class="text-5xl font-thin pl-3!">+</span>افزودن وظیفه جدید
         </button>
-
+        <!-- task list -->
+         <ul id="task-list" class="grid grid-cols-1 gap-4"></ul>
+        <!-- nothing to do -->
         <div id="No-Tsk" class="opacity-50">
           <div class="size-[55%] m-auto! mt-12!" id="bg-pic">
             <img src="../assets/images/TodayTasks.png.png" alt="" />
@@ -186,90 +187,39 @@
           </div>
         </div>
         <!-- add tasks js -->
-
-        <div
-          id="add-tsk"
-          class="flex-col border border-gray-200 rounded-xl gap-3 transition-all duration-300 ease-out opacity-0 -translate-y-4 pointer-events-none hidden"
-        >
-          <input
-            class="pr-5 pt-2 font-bold outline-none"
-            type="text"
-            placeholder="نام تسک"
-            id="Task's-name"
-          />
-          <input
-            class="pr-5 pt-2 py-5 text-gray-500 outline-none"
-            type="text"
-            placeholder="توضیحات"
-            id="info"
-          />
-          <!-- add tags js -->
-          <div>
-            <button
-              id="Tags"
-              class="flex gap-1 mb-3! mr-5! mt-4! p-1 border border-gray-500 hover:bg-gray-200 transition-colors duration-150 rounded-lg text-gray-400"
-            >
-              <img src="../assets/icons/tag-right.svg" alt="image" />تگ ها
-            </button>
-          </div>
-
-          <div
-            id="Close-tags"
-            class="transition-all duration-300 ease-out opacity-0 -translate-y-4 pointer-events-none hidden"
-          >
+        
+        <div id="add-tsk" class="flex-col border border-gray-200 rounded-xl gap-3 transition-all duration-300 ease-out opacity-0 -translate-y-4 pointer-events-none hidden shadow-md">
+            <input id="task-name" class="pr-5 pt-2 font-bold outline-none" type="text" placeholder="نام تسک" id="Task's-name">
+            <input id="task-info" class="pr-5 pt-2 py-5 text-gray-500 outline-none" type="text" placeholder="توضیحات" id="info">
+            <!-- selected tags js -->
+             <div>
+               <button id="add-red" class="hidden mr-5! gap-4 p-2 cursor-pointer rounded-lg bg-red-300 hover:bg-red-400 text-red-500 transition-colors duration-300"><img src="../assets/icons/exit.svg" alt="exit">بالا</button>
+               <button id="add-ylw" class="hidden mr-5! gap-4 p-2 cursor-pointer rounded-lg bg-yellow-200 hover:bg-yellow-300 text-yellow-500 transition-colors duration-300"><img src="../assets/icons/exit.svg" alt="exit">متوسط</button>
+               <button id="add-green" class="hidden mr-5! gap-4 p-2 cursor-pointer rounded-lg bg-green-200 hover:bg-green-300 text-green-500 transition-colors duration-300"><img src="../assets/icons/exit.svg" alt="exit">پایین</button>
+            </div>
+            <!-- add tags js -->
             <div>
-              <button
-                id="close-tg-btn"
-                class="flex justify-center items-center gap-1 mb-3! mr-5! mt-4! p-1 border border-gray-500 hover:bg-gray-200 transition-colors duration-150 rounded-lg text-gray-400"
-              >
-                <img
-                  class="size-4"
-                  src="../assets/icons/tag-down.png"
-                  alt="icon"
-                />تگ ها
-              </button>
+                <button id="Tags" class="flex gap-1 mb-3! mr-5! mt-4! p-1 border border-gray-500 hover:bg-gray-200 transition-colors duration-150 rounded-lg text-gray-400"><img src="../assets/icons/tag-right.svg" alt="image">تگ ها</button>
             </div>
-
-            <div
-              class="flex justify-between border ml-40! mr-5! p-3 rounded-lg border-gray-300 text-gray-300 lg:size-[33%]"
-            >
-              <button
-                id="red-tag"
-                class="p-2 cursor-pointer rounded-lg bg-red-300 hover:bg-red-400 text-red-500 transition-colors duration-300"
-              >
-                بالا
-              </button>
-              <div class="border-l"></div>
-              <button
-                id="ylw-tag"
-                class="p-2 cursor-pointer rounded-lg bg-yellow-200 hover:bg-yellow-300 text-yellow-500 transition-colors duration-300"
-              >
-                متوسط
-              </button>
-              <div class="border-r"></div>
-              <button
-                id="green-tag"
-                class="p-2 cursor-pointer rounded-lg bg-green-200 hover:bg-green-300 text-green-500 transition-colors duration-300"
-              >
-                پایین
-              </button>
-            </div>
-          </div>
-
-          <div class="flex justify-end border-t border-gray-200 gap-2 pt-5">
-            <button id="cls-addtsk" class="pl-3 mb-5! rounded-xl">
-              <img
-                class="cursor-pointer bg-gray-200 hover:bg-gray-300 transition-colors duration-250 rounded-lg size-9"
-                src="../assets/icons/exit.svg"
-                alt="icon"
-              />
-            </button>
-            <button
-              class="pl-3 mb-5! ml-3! text-white bg-blue-500 hover:bg-blue-600 transition-colors duration-250 p-2 rounded-xl cursor-pointer disabled:bg-blue-300 disabled:cursor-not-allowed"
-            >
-              اضافه کردن تسک ها
-            </button>
-          </div>
+            
+                <div id="Close-tags" class="transition-all duration-300 ease-out opacity-0 -translate-y-4 pointer-events-none hidden">
+                    <div>
+                        <button id="close-tg-btn" class="flex justify-center items-center gap-1 mb-3! mr-5! mt-4! p-1 border border-gray-500 hover:bg-gray-200 transition-colors duration-150 rounded-lg text-gray-400"><img class="size-4" src="../assets/icons/tag-down.png" alt="icon">تگ ها</button>
+                     </div>
+                    
+                    <div id="all-tags" class="flex justify-between border ml-40! mr-5! p-3 rounded-lg border-gray-300 text-gray-300 w-fit h-fit gap-5">
+                        <button id="red-tag" class="p-2 cursor-pointer rounded-lg bg-red-300 hover:bg-red-400 text-red-500 transition-colors duration-300">بالا</button>
+                        <div class="border-l"></div>
+                        <button id="ylw-tag" class="p-2 cursor-pointer rounded-lg bg-yellow-200 hover:bg-yellow-300 text-yellow-500 transition-colors duration-300">متوسط</button>
+                        <div class="border-r"></div>
+                        <button id="green-tag" class="p-2 cursor-pointer rounded-lg bg-green-200 hover:bg-green-300 text-green-500 transition-colors duration-300">پایین</button>
+                    </div>
+                </div>
+        
+            <div class="flex justify-end border-t border-gray-200 gap-2 pt-5">
+                <button id="cls-addtsk" class="pl-3 mb-5! rounded-xl"><img class="cursor-pointer bg-gray-200 hover:bg-gray-300 transition-colors duration-250 rounded-lg size-9" src="../assets/icons/exit.svg" alt="icon"></button>
+                <button id="btn-dsble" disabled class="pl-3 mb-5! ml-3! text-white bg-blue-500 hover:bg-blue-600 transition-colors duration-250 p-2 rounded-xl cursor-pointer disabled:bg-blue-300 disabled:cursor-not-allowed">اضافه کردن تسک ها</button>
+             </div>
         </div>
       </section>
       <section id="EndTask" class="flex flex-col mt-9! mx-5! lg:mx-65!">
