@@ -164,7 +164,7 @@ CloseTags.classList.add('hidden')
 AddGreen.classList.remove('hidden')
 AddGreen.classList.add('flex')
 SelectedTag = {text: "پایین" , class : "bg-green-200 text-green-500"}
-BorderTag = {class :"before:absolute before:right-0 before:top-[10%] before:h-[80%] before:w-[4px] before:bg-green-500 before:rounded-l-2xl"}
+BorderTag = {class :"before:absolute before:right-0 before:top-[10%] before:h-[80%] before:w-[4px] before:bg-green-600 before:rounded-l-2xl"}
 checkinputs()
 })
 
