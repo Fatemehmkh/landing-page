@@ -119,7 +119,7 @@ CloseTags.classList.add('hidden')
 AddRed.classList.remove('hidden')
 AddRed.classList.add('flex')
 SelectedTag = {text: "بالا" , class : "bg-red-300 text-red-500"}
-BorderTag = {class :"border-r-4 border-red-500"}
+BorderTag = {class :"before:absolute before:right-0 before:top-50% before:h-[80%] before:w-[4px] before:bg-red-500 before:rounded-l-2xl"}
 checkinputs()
 })
 YellowTag.addEventListener("click" , () => {
@@ -127,7 +127,7 @@ CloseTags.classList.add('hidden')
 AddYellow.classList.remove('hidden')
 AddYellow.classList.add('flex')
 SelectedTag = {text: "متوسط" , class : "bg-yellow-200 text-yellow-500"}
-BorderTag = {class :"border-r-4 border-yellow-500"}
+BorderTag = {class :"before:absolute before:right-0 before:top-50% before:h-[80%] before:w-[4px] before:bg-yellow-500 before:rounded-l-2xl"}
 checkinputs()
 })
 GreenTag.addEventListener("click" , () => {
@@ -135,7 +135,7 @@ CloseTags.classList.add('hidden')
 AddGreen.classList.remove('hidden')
 AddGreen.classList.add('flex')
 SelectedTag = {text: "پایین" , class : "bg-green-200 text-green-500"}
-BorderTag = {class :"border-r-4 border-green-500"}
+BorderTag = {class :"before:absolute before:right-0 before:top-50% before:h-[80%] before:w-[4px] before:bg-green-500 before:rounded-l-2xl"}
 checkinputs()
 })
 
@@ -172,17 +172,17 @@ document.addEventListener("DOMContentLoaded" , () => {
   function renderlist(list) {
     TaskList.innerHTML = list.map((task) =>
       `<li class="relative bg-white border border-gray-300 rounded-lg shadow-sm">
-        <div class = "absolute ${task.bodertags.class} -right-10 rounded-l-lg">
-        </div>
+        <div class = "${task.bodertags.class} rounded-lg">
         <button class = "absolute top-3 left-5"><img class = "cursor-pointer" src="../assets/icons/Frame 33317.svg" alt="icon"></button>
         <div class="lg:flex lg:flex-row">
-          <div class="flex justify-start items-center gap-5 m-3!">
-             <input class="size-5" type="checkbox" name="check">
-             <strong class="text-xl">${task.title}</strong>
-          </div>
-          <span class="inline-block mr-10! mb-3! mt-1! px-3 py-1 lg:mr-5! lg:mt-4! max-w-full rounded-lg text-sm ${task.tag.class}"> ${task.tag.text} </span>
-          </div>
-          <p class="text-gray-500 m-3! max-w-full text-ellipsis">${task.paragraph}</p>
+        <div class="flex justify-start items-center gap-5 m-3!">
+        <input class="size-5" type="checkbox" name="check">
+        <strong class="text-xl">${task.title}</strong>
+        </div>
+        <span class="inline-block mr-10! mb-3! mt-1! px-3 py-1 lg:mr-5! lg:mt-4! max-w-full rounded-lg text-sm ${task.tag.class}"> ${task.tag.text} </span>
+        </div>
+        <p class="text-gray-500 m-3! max-w-full text-ellipsis">${task.paragraph}</p>
+        </div>
         </li>`
   ).join("")
   }
