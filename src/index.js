@@ -163,7 +163,7 @@ CloseTags.classList.add('hidden')
 AddGreen.classList.remove('hidden')
 AddGreen.classList.add('flex')
 SelectedTag = {text: "پایین" , class : "bg-green-200 text-green-500"}
-BorderTag = {class :"before:absolute before:right-0 before:top-[10%] before:h-[80%] before:w-[4px] before:bg-green-500 before:rounded-l-2xl"}
+BorderTag = {class :"before:absolute before:right-0 before:top-[10%] before:h-[80%] before:w-[4px] before:bg-green-600 before:rounded-l-2xl"}
 checkinputs()
 })
 
@@ -194,29 +194,76 @@ function Counter(count) {
 }
 
 const TaskList = document.querySelector("#task-list")
-// Create tasks
+// Create tasks and save in local storage
 document.addEventListener("DOMContentLoaded" , () => {
-  let WriteTask = []
+  let WriteTask = JSON.parse(localStorage.getItem("task's-list")) || []
   function renderlist(list) {
     TaskList.innerHTML = list.map((task) =>
-      `<li class="relative bg-white border border-gray-300 rounded-lg shadow-sm">
+      `<li data-id=${task.id} class="relative bg-white border border-gray-300 rounded-lg shadow-sm">
         <div class = "${task.bodertags.class}">
         </div>
-        <button class = "absolute top-3 left-5"><img class = "cursor-pointer" src="../assets/icons/Frame 33317.svg" alt="icon"></button>
+        <button  class = "open-edit absolute top-3 left-5"><img class = "cursor-pointer" src="../assets/icons/Frame 33317.svg" alt="icon"></button>
+
+        <div class="edit-del hidden border border-gray-300 shadow-md top-10 left-5 rounded-lg ">
+        <div class="flex flex-row">
+        <button class = "edit-btn p-3 top-10 left-5 hover:bg-gray-200 transition-colors duration-300 rounded-r-md"><img class = "cursor-pointer" src="../assets/icons/tabler_edit.svg" alt="icon"></button>
+        <div class="border-l border-gray-300"></div>
+          <button class = "delete-btn p-3  top-10 left-10 hover:bg-gray-300 transition-colors duration-300 rounded-l-md"><img class = "cursor-pointer" src="../assets/icons/tabler_trash-x.svg" alt="icon"></button>
+          </div>
+         </div>
+
         <div class="lg:flex lg:flex-row">
           <div class="flex justify-start items-center gap-5 m-3!">
              <input class="size-5" type="checkbox" name="check">
              <strong class="text-xl">${task.title}</strong>
           </div>
+
           <span class="inline-block mr-10! mb-3! mt-1! px-3 py-1 lg:mr-5! lg:mt-4! max-w-full rounded-lg text-sm ${task.tag.class}"> ${task.tag.text} </span>
           </div>
           <p class="text-gray-500 m-3! max-w-full text-ellipsis">${task.paragraph}</p>
         </li>`
   ).join("")
+
+  localStorage.setItem("task's-list" ,JSON.stringify(list));
+
   }
   renderlist(WriteTask);
+  Counter(WriteTask.length)
+    if (WriteTask.length != 0) {
+      NoTask.classList.add('hidden')
+    }
   
+    // delete list
+  TaskList.addEventListener("click", (e) => {
+  const deleteBtn = e.target.closest(".delete-btn")
+  if (!deleteBtn) return
+
+  const li = deleteBtn.closest("li")
+  const id = li.dataset.id
+
+  WriteTask = WriteTask.filter(task => task.id !== id)
+
+  renderlist(WriteTask)
+  Counter(WriteTask.length)
+
+  if (WriteTask.length === 0) {
+    NoTask.classList.remove("hidden")
+  }
+})
   
+  // Edit list
+
+  let currentEditId = null
+  TaskList.addEventListener("click", (e) => {
+  const Editbtn = e.target.closest(".edit-btn")
+  if (!Editbtn) return
+  
+  const li = Editbtn.closest("li")
+  const id = li.dataset.id;
+  const taskToEdit = WriteTask.find(task => task.id === id);
+})
+
+
   Button.addEventListener("click" , () => {
     const TaskTitle = Taskname.value
     const TaskInformation = Taskinfo.value
@@ -228,17 +275,18 @@ document.addEventListener("DOMContentLoaded" , () => {
      , tag : SelectedTag
       , bodertags : BorderTag
     } 
+    
 
     //reset task's menu
   function resetAddTaskMenu() {
-  
+    
   Taskname.value = "";
   Taskinfo.value = "";
   Button.disabled = true;
 
   SelectedTag = null;
   BorderTag = null;
-
+  
   AddRed.classList.add("hidden");
   AddYellow.classList.add("hidden");
   AddGreen.classList.add("hidden");
@@ -259,5 +307,15 @@ document.addEventListener("DOMContentLoaded" , () => {
   OpenTaskMenu.classList.remove('hidden')
   Taskname.addEventListener("input" , checkinputs);
   Taskinfo.addEventListener("input" , checkinputs);
- })
+})
 });
+
+ TaskList.before(AddTasks)
+// Open delete and edit menu
+TaskList.addEventListener("click", (e) => {
+  if (e.target.closest(".open-edit")) {
+    const editMenu = e.target.closest("li").querySelector(".edit-del")
+    editMenu.classList.remove("hidden")
+    editMenu.classList.add("absolute")
+  }
+})

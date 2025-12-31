@@ -48,7 +48,7 @@
     <!--SideBar-->
     <aside
       id="menuBar"
-      class="fixed top-0 -right-72 z-50 w-72 h-full overflow-y-auto no-scrollbar bg-white text-gray-800 transition-all duration-300 lg:right-0 lg:rounded-2xl lg:shadow-lg lg:mr-4! lg:h-full lg:py-3 lg:mt-6! dark:bg-[#091120] dark:text-gray-100"
+      class="fixed top-0 -right-72 z-50 w-72 lg:w-80 h-full overflow-y-auto no-scrollbar bg-white text-gray-800 transition-all duration-300 lg:right-0 lg:rounded-2xl lg:shadow-lg lg:mr-4! lg:h-full lg:py-3 lg:mt-6! dark:bg-[#091120] dark:text-gray-100"
     >
       <!--head of sidebar-->
       <div class="py-7 px-4 flex items-center justify-between lg:hidden">
@@ -125,7 +125,7 @@
           >
             <button
               id="btn-light"
-              class="flex items-center bg-white dark:bg-transparent text-[#525252] justify-center gap-3 py-1.5 px-4 rounded-lg dark:text-white cursor-pointer"
+              class="flex items-center bg-white dark:bg-transparent text-[#525252] justify-center gap-3 py-1.5 px-6 rounded-lg dark:text-white cursor-pointer"
             >
               <img src="./../assets/icons/sun.svg" class="block dark:hidden" />
               <img
@@ -137,7 +137,7 @@
 
             <button
               id="btn-dark"
-              class="flex items-center justify-center gap-3 py-1.5 px-4 rounded-lg text-[#808080] dark:bg-[#0C1B31] dark:text-white cursor-pointer"
+              class="flex items-center justify-center gap-3 py-1.5 px-6 rounded-lg text-[#808080] dark:bg-[#0C1B31] dark:text-white cursor-pointer"
             >
               <img src="./../assets/icons/moon.svg" class="block dark:hidden" />
               <img
@@ -149,11 +149,11 @@
           </div>
         </div>
         <!--line in sidebar-->
-        <div class="w-52 border-[#E9E9E9] border mx-auto! mt-6!"></div>
+        <div class="w-60 border-[#E9E9E9] border mx-auto! mt-6!"></div>
         <!--log out-->
         <div class="pr-9 flex items-center gap-4 mt-8!">
           <img src="./../assets/icons/logout.svg" alt="logout" />
-          <span>خروج</span>
+          <span class="text-[#525252] font-semibold">خروج</span>
         </div>
       </div>
     </aside>
