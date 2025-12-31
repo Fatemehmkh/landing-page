@@ -320,3 +320,153 @@ TaskList.addEventListener("click", (e) => {
     editMenu.classList.add("absolute")
   }
 })
+
+
+//add task
+
+const todayTasksList = document.querySelector("#task-list");
+const completedTasksContainer = document.querySelector("#Carts");
+const remainingText = document.querySelector("#EndTask p");
+const emptyTasksMessage = document.querySelector("#No-Tsk");
+const addTaskButton = document.querySelector("#open-tsk-menu");
+
+// آرایه برای نگهداری اطلاعات کامل تسک‌های انجام‌شده
+let completedTasks = [];
+
+// Task counter
+const ShowCounter = document.getElementById("Counter");
+const Carts = document.getElementById("Carts");
+const tdTaskDiv = document.getElementById("td-task");
+
+
+
+function updateCounter() {
+  const CounterLength = Carts.children.length;
+  ShowCounter.textContent = `${CounterLength} تسک انجام شده است `;
+}
+
+
+
+
+// جلوگیری از تکرار تسک‌های انجام‌شده بعد از رندر دوباره توسط کد اصلی
+const preventDuplicateObserver = new MutationObserver(() => {
+  todayTasksList.querySelectorAll("li").forEach(li => {
+    const title = li.querySelector("strong")?.textContent?.trim();
+    const paragraph = li.querySelector("p.text-gray-500")?.textContent?.trim() || "";
+
+    if (completedTasks.some(t => t.title === title && t.paragraph === paragraph)) {
+      li.remove();
+    }
+  });
+updateCounter();
+});
+preventDuplicateObserver.observe(todayTasksList, { childList: true, subtree: true });
+
+// رویداد اصلی - با event delegation روی document (همیشه کار می‌کنه حتی بعد از چندین بار جابه‌جایی)
+document.addEventListener("change", (e) => {
+  if (e.target.type !== "checkbox") return;
+
+  const checkbox = e.target;
+  const taskItem = checkbox.closest("li") || checkbox.closest("div.relative");
+  if (!taskItem) return;
+
+  const isInToday = checkbox.closest("#task-list") !== null;
+  const isInCompleted = checkbox.closest("#Carts") !== null;
+
+  // استخراج عنوان و توضیحات
+  const title = taskItem.querySelector("strong")?.textContent?.trim() ||
+                taskItem.querySelector("p.font-semibold")?.textContent?.trim() || "";
+
+  const paragraph = taskItem.querySelector("p.text-gray-500")?.textContent?.trim() || "";
+
+  // پیدا کردن اطلاعات ذخیره‌شده (اگر وجود داشته باشه)
+  const savedTask = completedTasks.find(t => t.title === title && t.paragraph === paragraph);
+
+  let tag = savedTask ? savedTask.tag : null;
+  let bodertagsClass = savedTask ? savedTask.bodertagsClass : "";
+
+  // اگر تسک از لیست امروز داره میره پایین، اطلاعات رو از DOM بگیر
+  if (isInToday && checkbox.checked) {
+    const tagSpan = taskItem.querySelector("span[class*='bg-']");
+    if (tagSpan) {
+      tag = {
+        text: tagSpan.textContent.trim(),
+        class: tagSpan.className
+      };
+    }
+
+    const borderDiv = taskItem.querySelector("div[class*='before:bg-']");
+    if (borderDiv) {
+      bodertagsClass = borderDiv.className;
+    }
+  }
+
+  if (checkbox.checked && isInToday) {
+    // → رفتن به انجام‌شده
+    let doneBorder = "before:bg-green-700";
+    if (bodertagsClass.includes("red")) doneBorder = "before:bg-red-500";
+    else if (bodertagsClass.includes("yellow")) doneBorder = "before:bg-yellow-500";
+    else if (bodertagsClass.includes("green")) doneBorder = "before:bg-green-500";
+
+    const doneHTML = `
+      <div class="relative dark:bg-[#091120] dark:border-0 w-full min-h-20 p-3 border items-center flex border-[#E9E9E9] bg-white rounded-xl overflow-hidden before:content-[''] before:absolute before:right-0 before:top-50% before:h-[80%] before:w-[4px] ${doneBorder} before:rounded-l-2xl">
+        <input class="bg-[#007BFF] text-[#007BFF] accent-[#007BFF] cursor-pointer w-5 h-5" type="checkbox" checked>
+        <div class="pt-3 pb-3 flex-1 flex flex-row">
+          <p class="font-semibold dark:text-[#FFFFFF] text-sm px-3.5 line-through">${title}</p>
+        </div>
+        <button type="button" class="cursor-pointer h-5 w-1">
+          <img class="h-5 w-1" src="../assets/icons/Frame 33317.svg" alt="Edit">
+        </button>
+      </div>
+    `;
+    completedTasksContainer.insertAdjacentHTML("beforeend", doneHTML);
+
+    // ذخیره اطلاعات کامل
+    completedTasks.push({
+      title,
+      paragraph,
+      tag,
+      bodertagsClass
+    });
+
+    taskItem.remove();
+    Counter(todayTasksList.querySelectorAll("li").length);
+  JavaScript} else if (!checkbox.checked && isInCompleted) {
+  // ← برگشت به لیست امروز
+
+  // پیدا کردن تسک در آرایه completedTasks فقط بر اساس title (کافیه چون عنوان منحصر به فرد فرض می‌شه)
+  const savedTask = completedTasks.find(t => t.title === title);
+
+  if (!savedTask) return; // ایمنی
+
+  const { tag, bodertagsClass, paragraph } = savedTask;
+
+  const todayHTML = `
+    <li class="relative bg-white border border-gray-300 rounded-lg shadow-sm">
+      <div class="${bodertagsClass || ''}"></div>
+      <button class="absolute top-3 left-5">
+        <img class="cursor-pointer" src="../assets/icons/Frame 33317.svg" alt="icon">
+      </button>
+      <div class="lg:flex lg:flex-row">
+        <div class="flex justify-start items-center gap-5 m-3!">
+          <input class="size-5 accent-[#007BFF]" type="checkbox" name="check">
+          <strong class="text-xl">${title}</strong>
+        </div>
+        ${tag ? `<span class="inline-block mr-10! mb-3! mt-1! px-3 py-1 lg:mr-5! lg:mt-4! max-w-full rounded-lg text-sm ${tag.class}">${tag.text}</span>` : ''}
+      </div>
+      ${paragraph ? `<p class="text-gray-500 m-3! max-w-full text-ellipsis">${paragraph}</p>` : ''}
+    </li>
+  `;
+  todayTasksList.insertAdjacentHTML("beforeend", todayHTML);
+
+  // حذف از آرایه انجام‌شده
+  completedTasks = completedTasks.filter(t => t.title !== title);
+
+  taskItem.remove();
+  Counter(todayTasksList.querySelectorAll("li").length);
+}
+updateCounter();
+});
+// به‌روزرسانی اولیه
+document.addEventListener("DOMContentLoaded", updateCounter);
+
