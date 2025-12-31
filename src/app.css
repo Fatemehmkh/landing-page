@@ -1,4 +1,3 @@
-
 @font-face {
   font-family: "YekanBakh";
   src: url(./assets/fonts/yekan-bakh/YekanBakh-Regular.woff2);
@@ -38,10 +37,22 @@
 }
 body {
   height: 100vh;
-  background: #FFFFFF;
+  background: #ffffff;
   background-repeat: no-repeat;
 }
 a {
   text-decoration: none;
 }
+.no-scrollbar {
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+}
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.menu-item .active {
+  background-color: #F5FAFF;
+  color: #007BFF;
+  font-weight: bold;
+}

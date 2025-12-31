@@ -58,17 +58,16 @@ document.getElementById("todayDate-1").innerText = `امروز، ${weekday}، ${
 
 
 // Active State
-const menuItems = document.querySelectorAll("#menuBar .flex.items-center");
+  // const menuItems = document.querySelectorAll(".menu-item");
 
-menuItems.forEach((item) => {
-  item.addEventListener("click", () => {
-    menuItems.forEach((i) =>
-      i.classList.remove("bg-[#F5FAFF]", "text-[#007BFF]")
-    );
-    item.classList.add("bg-[#F5FAFF]", "text-[#007BFF]");
-  });
-});
+  // menuItems.forEach(item => {
+  //   item.addEventListener("click", () => {
+  //     menuItems.forEach(i => i.classList.remove("active"));
+  //     item.classList.add("active");
+  //   });
+  // });
 
+  // document.querySelector('[data-page="home"]').classList.add("active");
 
 // Add Tasks
 
