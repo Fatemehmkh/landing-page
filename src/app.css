@@ -1,3 +1,5 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @font-face {
   font-family: "YekanBakh";
@@ -38,10 +40,22 @@
 }
 body {
   height: 100vh;
-  background: linear-gradient(to bottom, #ebf3ff, #ffffff);
+  background: #ffffff;
   background-repeat: no-repeat;
 }
 a {
   text-decoration: none;
 }
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.menu-item .active {
+  background-color: #f5faff;
+  color: #007bff;
+  font-weight: bold;
+}
