@@ -1,41 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" dir="rtl" class="dark">
+<html lang="en" dir="rtl" class="dark bg-white dark:bg-[#060C18]">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script>
-      tailwind.config = {
-        darkMode: "class",
-      };
-    </script>
+    <style type="text/tailwindcss">
+      @custom-variant light (&:where(.light, .light *));
+      @custom-variant dark (&:where(.dark, .dark *));
+    </style>
     <title>کوئرالیست</title>
     <link rel="stylesheet" href="./../app.css" />
   </head>
-  <body>
+  <body class="dark:bg-green-950 sm:dark:bg-teal-300">
     <!--Header-->
-    <header class="p-4 lg:hidden">
+    <header class="p-4 lg:hidden bg-[#060C18]">
       <div
-        class="flex justify-between items-center h-12 bg-white shadow-sm p-4 rounded-lg"
+        class="flex justify-between items-center dark:bg-[#091120] h-12 bg-white shadow-sm p-4 rounded-lg"
       >
         <button class="cursor-pointer" id="menuBtn">
           <img src="./../assets/icons/menu.svg" alt="hamburger-menu" />
         </button>
-        <h1 class="text-base text-text font-bold">کوئرا لیست</h1>
+        <h1 class="text-base text-text font-bold dark:text-white">
+          کوئرا لیست
+        </h1>
         <div></div>
       </div>
     </header>
     <!--Header-->
     <!--Greeting-->
-    <div class="lg:hidden h-24 w-full flex px-4">
+    <div class="lg:hidden h-24 w-full flex px-4 dark:bg-[#060C18]">
       <!--profile-->
       <div class="w-fit flex items-center justify-center">
         <img src="./../assets/images/user5.png" alt="profile" />
       </div>
       <!--ShamsiDatePicker-->
-      <div class="w-2/3 flex flex-col justify-center pr-2 gap-3">
-        <h3 class="text-[#242424] font-extrabold text-lg">سلام رویا</h3>
+      <div
+        class="w-2/3 flex flex-col justify-center pr-2 gap-3 dark:bg-[#060C18] dark:text-white"
+      >
+        <h3 class="text-[#242424] font-extrabold text-lg dark:text-white">
+          سلام رویا
+        </h3>
         <p id="todayDate" class="text-[#7D7D7F] font-semibold"></p>
       </div>
     </div>
@@ -58,14 +63,16 @@
         </button>
       </div>
       <!--Greeting-->
-      <div class="hidden h-24 w-full lg:flex px-4 mb-5!">
+      <div class="hidden dark:bg-[#091120] h-24 w-full lg:flex px-4 mb-5!">
         <!--profile-->
         <div class="w-fit flex items-center justify-center">
           <img src="./../assets/images/user5.png" alt="profile" />
         </div>
         <!--ShamsiDatePicker-->
-        <div class="w-2/3 lg:flex flex-col justify-center pr-2 gap-3">
-          <h3 class="text-[#242424] font-extrabold text-lg">سلام رویا</h3>
+        <div class="w-2/3 lg:flex flex-col justify-center pr-2 gap-3 ">
+          <h3 class="text-[#242424] font-extrabold text-lg dark:text-white">
+            سلام رویا
+          </h3>
           <p
             id="todayDate-1"
             class="text-[#7D7D7F] font-semibold text-sm whites"
@@ -75,46 +82,46 @@
       <!--body of sidebar-->
       <div class="flex flex-col gap-6 px-4 text-text-menu">
         <div
-          class=" hover:bg-[#F5FAFF] hover:text-[#007BFF] cursor-pointer pr-5 w-full flex items-center gap-4 h-11 rounded-lg active"
+          class="hover:bg-[#F5FAFF] hover:text-[#007BFF] cursor-pointer pr-5 w-full flex items-center gap-4 h-11 rounded-lg active:bg-[#041933] dark:hover:bg-[#041933]"
         >
           <img src="./../assets/icons/home-2.svg" />
           <span class="text-primary font-bold text-base">خانه</span>
         </div>
         <div
-          class="pr-5 w-full flex items-center gap-4 cursor-pointer h-11 text-[#525252] rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-300 ;"
+          class="pr-5 w-full flex items-center gap-4 cursor-pointer h-11 text-[#525252] rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-150 dark:hover:bg-[#041933]"
         >
           <img src="./../assets/icons/task-square.svg" />
-          <span class="font-semibold">تسک ها</span>
+          <span class="font-semibold dark:text-white">تسک ها</span>
         </div>
         <div
-          class="pr-5 w-full flex items-center cursor-pointer text-[#525252] gap-4 h-11 rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-300 ;"
+          class="pr-5 w-full flex items-center cursor-pointer text-[#525252] gap-4 h-11 rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-150 dark:hover:bg-[#041933]"
         >
           <img src="./../assets/icons/calendar.svg" />
-          <span class="font-semibold">تقویم</span>
+          <span class="font-semibold dark:text-white">تقویم</span>
         </div>
         <div
-          class="pr-5 w-full flex items-center cursor-pointer text-[#525252] gap-4 h-11 rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-300 ;"
+          class="pr-5 w-full flex items-center cursor-pointer text-[#525252] gap-4 h-11 rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-150 dark:hover:bg-[#041933]"
         >
           <img src="./../assets/icons/arrange-square-2.svg" />
-          <span class="font-semibold">گزارشات</span>
+          <span class="font-semibold dark:text-white">گزارشات</span>
         </div>
         <div
-          class="pr-5 w-full flex items-center cursor-pointer text-[#525252] gap-4 h-11 rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-300 ;"
+          class="pr-5 w-full flex items-center cursor-pointer text-[#525252] gap-4 h-11 rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-150 dark:hover:bg-[#041933]"
         >
           <img src="./../assets/icons/setting.svg" />
-          <span class="font-semibold">تنظیمات</span>
+          <span class="font-semibold dark:text-white">تنظیمات</span>
         </div>
         <div
-          class="pr-5 w-full flex items-center cursor-pointer text-[#525252] gap-4 h-11 rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-300 ;"
+          class="pr-5 w-full flex items-center cursor-pointer text-[#525252] gap-4 h-11 rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-150 dark:hover:bg-[#041933]"
         >
           <img src="./../assets/icons/24-support.svg" />
-          <span class="font-semibold">پشتیبانی</span>
+          <span class="font-semibold dark:text-white">پشتیبانی</span>
         </div>
         <div
-          class="pr-5 w-full flex items-center cursor-pointer text-[#525252] gap-4 h-11 rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-300 ;"
+          class="pr-5 w-full flex items-center cursor-pointer text-[#525252] gap-4 h-11 rounded-lg hover:bg-[#F5FAFF] hover:text-[#007BFF] transition-all duration-150 dark:hover:bg-[#041933]"
         >
           <img src="./../assets/icons/profile.svg" />
-          <span class="font-semibold">پروفایل</span>
+          <span class="font-semibold dark:text-white">پروفایل</span>
         </div>
       </div>
       <!--toggle button for dark/light-->
@@ -127,23 +134,23 @@
               id="btn-light"
               class="flex items-center bg-white dark:bg-transparent text-[#525252] justify-center gap-3 py-1.5 px-6 rounded-lg dark:text-white cursor-pointer"
             >
-              <img src="./../assets/icons/sun.svg" class="block dark:hidden" />
-              <img
+              <img src="./../assets/icons/sun.svg" />
+              <!-- <img
                 src="./../assets/icons/sun-dark.svg"
                 class="hidden dark:block"
-              />
-              <span class="font-semibold">روشن</span>
+              /> -->
+              <span class="font-semibold dark:text-[#7A7A7A]">روشن</span>
             </button>
 
             <button
               id="btn-dark"
-              class="flex items-center justify-center gap-3 py-1.5 px-6 rounded-lg text-[#808080] dark:bg-[#0C1B31] dark:text-white cursor-pointer"
+              class="flex items-center justify-center gap-3 py-1.5 px-6 rounded-lg text-[#808080] dark:bg-[#002247] dark:text-white cursor-pointer"
             >
-              <img src="./../assets/icons/moon.svg" class="block dark:hidden" />
-              <img
+              <img src="./../assets/icons/moon.svg" />
+              <!-- <img
                 src="./../assets/icons/moon-dark.svg"
                 class="hidden dark:block"
-              />
+              /> -->
               <span class="font-semibold">تاریک</span>
             </button>
           </div>
@@ -158,10 +165,10 @@
       </div>
     </aside>
     <!--SideBar-->
-    <main class="lg:pr-52">
+    <main class="lg:pr-52 dark:bg-[#060C18] h-dvh">
       <!-- First section -->
       <section id="td-tasks" class="flex flex-col mt-9! gap-2 mx-5! lg:mx-65!">
-        <h2 class="text-xl font-bold">تسک های امروز</h2>
+        <h2 class="text-xl font-bold dark:text-[#FFFFFF]">تسک های امروز</h2>
         <!-- Having task or not -> js -->
         <p id="task-counter" class="text-gray-500">تسکی برای امروز نداری!</p>
 
@@ -172,7 +179,7 @@
           <span class="text-5xl font-thin pl-3!">+</span>افزودن وظیفه جدید
         </button>
         <!-- task list -->
-        <ul id="task-list" class="grid grid-cols-1 gap-4"></ul>
+        <ul id="task-list" class="grid grid-cols-1 gap-4 pt-2"></ul>
         <!-- nothing to do -->
         <div id="No-Tsk" class="opacity-50">
           <div class="size-[55%] m-auto! mt-12!" id="bg-pic">
@@ -303,14 +310,21 @@
           </div>
         </div>
       </section>
-     <section id="EndTask" class="flex dark:bg-[#060C18] flex-col mt-9! mx-5! lg:mx-65!">
+      <!-- Second section -->
+      <section
+        id="EndTask"
+        class="flex dark:bg-[#060C18] flex-col mt-9! mx-5! lg:mx-65!"
+      >
         <h2 class="text-xl dark:text-[#FFFFFF] font-bold">تسک های انجام شده</h2>
-        <p id="Counter" class="text-[#696969] dark:text-[#848890] pt-3 mb-2 box-border">
-           تسک را بایدانجام داد
+        <p
+          id="Counter"
+          class="text-[#696969] dark:text-[#848890] pt-3 mb-2 box-border"
+        >
+          تسک را بایدانجام داد
         </p>
         <!-- carts -->
         <div id="Carts" class="grid gap-4 mt-4!">
-        <!-- carts -->
+          <!-- carts -->
         </div>
       </section>
     </main>

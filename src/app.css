@@ -1,3 +1,6 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
 @font-face {
   font-family: "YekanBakh";
   src: url(./assets/fonts/yekan-bakh/YekanBakh-Regular.woff2);
@@ -44,15 +47,15 @@ a {
   text-decoration: none;
 }
 .no-scrollbar {
-  -ms-overflow-style: none; 
-  scrollbar-width: none; 
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 .menu-item .active {
-  background-color: #F5FAFF;
-  color: #007BFF;
+  background-color: #f5faff;
+  color: #007bff;
   font-weight: bold;
 }
